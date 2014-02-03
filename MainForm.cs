@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using System.Xml.Serialization;
 using System.IO;
 using System.Xml;
+using Artemisia.Dialogs;
+using LuaSerialization;
 
 namespace Artemisia
 {
@@ -234,10 +236,14 @@ namespace Artemisia
             sfd.ShowDialog();
             if (!String.IsNullOrEmpty(sfd.FileName))
             {
-                TextWriter tw = new StreamWriter(sfd.FileName);
-                tw.Write(activeDialog.ToLua(0));
-                tw.Close();
-                MessageBox.Show("Success!");
+                //TextWriter tw = new StreamWriter(sfd.FileName);
+                //tw.Write(activeDialog.ToLua(0));
+                //tw.Close();
+                //MessageBox.Show("Success!");
+                Stream s = new FileStream(sfd.FileName, FileMode.Create);
+                LuaSerializer ls = new LuaSerializer(typeof(Dialog));
+                ls.Serialize(activeDialog, s);
+                s.Close();
             }
         }
 

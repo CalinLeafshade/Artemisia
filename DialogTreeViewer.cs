@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Artemisia.Dialogs;
 
 namespace Artemisia
 {
@@ -146,7 +147,8 @@ namespace Artemisia
                 cm.MenuItems.Add(new MenuItem("-"));
                 cm.MenuItems.Add(new MenuItem("Delete Node", (o, ev) =>
                 {
-                    dtn.DialogNode.Parent.RemoveNode(dtn.DialogNode);
+                    if (dtn.DialogNode.Nodes.Count == 0 || MessageBox.Show("This node has children. Are you sure you want to delete it?","Are you sure?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        dtn.DialogNode.Parent.RemoveNode(dtn.DialogNode);
                 })); 
                 cm.Show(this, e.Location);
             }

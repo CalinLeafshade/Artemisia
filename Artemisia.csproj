@@ -49,12 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dialog.cs" />
     <Compile Include="LuaScriptBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="LuaSerializable.cs" />
-    <Compile Include="Nodes\DialogNode.cs" />
     <Compile Include="DialogTreeNode.cs" />
     <Compile Include="DialogTreeViewer.cs">
       <SubType>UserControl</SubType>
@@ -62,7 +60,6 @@
     <Compile Include="DialogTreeViewer.Designer.cs">
       <DependentUpon>DialogTreeViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Nodes\LinkNode.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,9 +68,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Nodes\ResponseNode.cs" />
-    <Compile Include="Nodes\RootNode.cs" />
-    <Compile Include="Nodes\ActionNode.cs" />
     <Compile Include="TreeViewWithInterpolation.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -106,6 +100,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Types\Types.csproj">
+      <Project>{5054EF34-DB57-4322-AD6D-6ED8939CEB7D}</Project>
+      <Name>Types</Name>
+    </ProjectReference>
+    <ProjectReference Include="LuaSerializer\LuaSerialization.csproj">
+      <Project>{E769979E-E5EA-4624-ABA1-3A87191C715E}</Project>
+      <Name>LuaSerialization</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
