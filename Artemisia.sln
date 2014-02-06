@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artemisia", "Artemisia.csproj", "{2961B064-2DAE-43FE-8668-65BD7E8275EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DialogEditor", "DialogEditor\DialogEditor.csproj", "{2961B064-2DAE-43FE-8668-65BD7E8275EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Types", "..\Types\Types.csproj", "{5054EF34-DB57-4322-AD6D-6ED8939CEB7D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Types", "Types\Types.csproj", "{5054EF34-DB57-4322-AD6D-6ED8939CEB7D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuaSerialization", "LuaSerializer\LuaSerialization.csproj", "{E769979E-E5EA-4624-ABA1-3A87191C715E}"
 EndProject

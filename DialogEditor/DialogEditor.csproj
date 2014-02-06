@@ -52,7 +52,6 @@
     <Compile Include="LuaScriptBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="LuaSerializable.cs" />
     <Compile Include="DialogTreeNode.cs" />
     <Compile Include="DialogTreeViewer.cs">
       <SubType>UserControl</SubType>
@@ -106,7 +105,7 @@
       <Project>{5054EF34-DB57-4322-AD6D-6ED8939CEB7D}</Project>
       <Name>Types</Name>
     </ProjectReference>
-    <ProjectReference Include="LuaSerializer\LuaSerialization.csproj">
+    <ProjectReference Include="..\LuaSerializer\LuaSerialization.csproj">
       <Project>{E769979E-E5EA-4624-ABA1-3A87191C715E}</Project>
       <Name>LuaSerialization</Name>
     </ProjectReference>
