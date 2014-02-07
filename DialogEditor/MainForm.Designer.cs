@@ -33,16 +33,19 @@
             this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.newDialogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openDialogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.saveDialogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exportToLuaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.libraryTreeView = new System.Windows.Forms.TreeView();
             this.dialogSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.lblLoaded = new System.Windows.Forms.Label();
             this.dialogTreeViewer1 = new Artemisia.DialogTreeViewer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -58,7 +61,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtResponse = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
             this.mainSplitContainer.Panel1.SuspendLayout();
@@ -94,6 +96,7 @@
             this.fileToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newDialogToolStripMenuItem,
             this.openDialogToolStripMenuItem,
+            this.toolStripMenuItem4,
             this.saveDialogToolStripMenuItem,
             this.saveAsToolStripMenuItem,
             this.toolStripMenuItem1,
@@ -119,11 +122,19 @@
             this.openDialogToolStripMenuItem.Text = "Open Library";
             this.openDialogToolStripMenuItem.Click += new System.EventHandler(this.openDialogToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(214, 22);
+            this.toolStripMenuItem4.Text = "Open Dialog";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
+            // 
             // saveDialogToolStripMenuItem
             // 
             this.saveDialogToolStripMenuItem.Name = "saveDialogToolStripMenuItem";
             this.saveDialogToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.saveDialogToolStripMenuItem.Text = "Save";
+            this.saveDialogToolStripMenuItem.Click += new System.EventHandler(this.saveDialogToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
@@ -143,6 +154,13 @@
             this.exportToLuaToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.exportToLuaToolStripMenuItem.Text = "Export to Lua";
             this.exportToLuaToolStripMenuItem.Click += new System.EventHandler(this.exportToLuaToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(214, 22);
+            this.toolStripMenuItem3.Text = "Export whole library to Lua";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -186,6 +204,7 @@
             this.libraryTreeView.Name = "libraryTreeView";
             this.libraryTreeView.Size = new System.Drawing.Size(196, 501);
             this.libraryTreeView.TabIndex = 0;
+            this.libraryTreeView.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.libraryTreeView_BeforeSelect);
             this.libraryTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.libraryTreeView_AfterSelect);
             // 
             // dialogSplitContainer
@@ -197,6 +216,7 @@
             // 
             // dialogSplitContainer.Panel1
             // 
+            this.dialogSplitContainer.Panel1.Controls.Add(this.lblLoaded);
             this.dialogSplitContainer.Panel1.Controls.Add(this.dialogTreeViewer1);
             // 
             // dialogSplitContainer.Panel2
@@ -206,12 +226,23 @@
             this.dialogSplitContainer.SplitterDistance = 229;
             this.dialogSplitContainer.TabIndex = 2;
             // 
+            // lblLoaded
+            // 
+            this.lblLoaded.AutoSize = true;
+            this.lblLoaded.Location = new System.Drawing.Point(12, 9);
+            this.lblLoaded.Name = "lblLoaded";
+            this.lblLoaded.Size = new System.Drawing.Size(93, 13);
+            this.lblLoaded.TabIndex = 1;
+            this.lblLoaded.Text = "Currently Loaded: ";
+            // 
             // dialogTreeViewer1
             // 
-            this.dialogTreeViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dialogTreeViewer1.Location = new System.Drawing.Point(0, 0);
+            this.dialogTreeViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dialogTreeViewer1.Location = new System.Drawing.Point(0, 28);
             this.dialogTreeViewer1.Name = "dialogTreeViewer1";
-            this.dialogTreeViewer1.Size = new System.Drawing.Size(837, 229);
+            this.dialogTreeViewer1.Size = new System.Drawing.Size(837, 201);
             this.dialogTreeViewer1.TabIndex = 0;
             this.dialogTreeViewer1.SelectionChanged += new System.EventHandler(this.dialogTreeViewer1_SelectionChanged);
             // 
@@ -388,13 +419,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Response";
             // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(214, 22);
-            this.toolStripMenuItem3.Text = "Export whole library to Lua";
-            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -412,6 +436,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).EndInit();
             this.mainSplitContainer.ResumeLayout(false);
             this.dialogSplitContainer.Panel1.ResumeLayout(false);
+            this.dialogSplitContainer.Panel1.PerformLayout();
             this.dialogSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dialogSplitContainer)).EndInit();
             this.dialogSplitContainer.ResumeLayout(false);
@@ -464,5 +489,7 @@
         private System.Windows.Forms.TextBox txtResponse;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.Label lblLoaded;
     }
 }

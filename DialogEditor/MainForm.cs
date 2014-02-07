@@ -18,6 +18,16 @@ namespace Artemisia
     {
         Dialog activeDialog;
         bool unsaved = false;
+        string _loadedFile = null;
+
+        public string LoadedFile
+        {
+            get { return _loadedFile; }
+            set { 
+                _loadedFile = value;
+                lblLoaded.Text = "Currently Loaded: " + (_loadedFile == null ? "UNSAVED" : Path.GetFileNameWithoutExtension(_loadedFile));
+            }
+        }
         List<TabPage> tabPages = new List<TabPage>();
 
         public MainForm()
@@ -28,14 +38,26 @@ namespace Artemisia
             dialogTreeViewer1.SelectionChanged += new EventHandler(dialogTreeViewer1_SelectionChanged);
             if (!String.IsNullOrEmpty(Properties.Settings.Default.LibraryFolder))
             {
-                openLibrary(Properties.Settings.Default.LibraryFolder);
+                refreshLibrary();
             }
+        }
+
+        void refreshLibrary()
+        {
+            openLibrary(Properties.Settings.Default.LibraryFolder, true);
         }
 
         void newDialog()
         {
-            unsaved = true;
-            setDialog(new Dialog());
+            if (unsaved && MessageBox.Show("The current dialog is unsaved. Are you sure want to make a new one?", "Are you sure?", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No)
+            {
+            }
+            else
+            {
+                unsaved = true;
+                setDialog(new Dialog());
+                LoadedFile = null;
+            }
         }
 
         void setDialog(Dialog d)
@@ -45,10 +67,6 @@ namespace Artemisia
             dialogTreeViewer1.SetDialog(activeDialog);
         }
 
-        void saveDialog()
-        {
-
-        }
 
         Dialog dialogFromFile(string filename)
         {
@@ -56,38 +74,64 @@ namespace Artemisia
             TextReader tr = new StreamReader(filename);
             Dialog d = (Dialog)xml.Deserialize(tr);
             d.RestoreParentReferences();
+            tr.Close();
             return d;
         }
 
         void open(string filename)
         {
             setDialog(dialogFromFile(filename));
+            LoadedFile = filename;
             unsaved = false;
         }
 
         void open()
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.DefaultExt = ".xml";
-            ofd.ShowDialog();
-            if (!String.IsNullOrEmpty(ofd.FileName))
+            if (unsaved && MessageBox.Show("The current dialog is unsaved. Are you sure want to load a different one?", "Are you sure?", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No)
             {
-                open(ofd.FileName);
             }
+            else
+            {
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.DefaultExt = "xml";
+                ofd.Filter = "Dialog XML files (*.xml)|*.xml";
+                ofd.AddExtension = true;
+                ofd.CheckFileExists = true;
+                ofd.CheckPathExists = true;
+                ofd.ShowDialog();
+                if (!String.IsNullOrEmpty(ofd.FileName))
+                {
+                    open(ofd.FileName);
+                }
+            }
+        }
+
+        void saveTo(string filename)
+        {
+            XmlSerializer xml = new XmlSerializer(activeDialog.GetType());
+            TextWriter tw = new StreamWriter(filename);
+            xml.Serialize(tw, activeDialog);
+            tw.Close();
+            unsaved = false;
+            LoadedFile = filename;
+            refreshLibrary();
         }
 
         void saveAs()
         {
+            if (activeDialog == null)
+            {
+                MessageBox.Show("No dialog open");
+                return;
+            }
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.DefaultExt = ".xml";
+            sfd.DefaultExt = "xml";
+            sfd.Filter = "Dialog XML files (*.xml)|*.xml";
+            sfd.AddExtension = true;
             sfd.ShowDialog();
             if (!String.IsNullOrEmpty(sfd.FileName))
             {
-                XmlSerializer xml = new XmlSerializer(activeDialog.GetType());
-                TextWriter tw = new StreamWriter(sfd.FileName);
-                xml.Serialize(tw, activeDialog);
-                tw.Close();
-                unsaved = false;
+                saveTo(sfd.FileName);
             }
         }
 
@@ -156,7 +200,8 @@ namespace Artemisia
 
         }
 
-        private void openLibrary(string folder)
+
+        private void openLibrary(string folder, bool silent = false)
         {
             Properties.Settings.Default.LibraryFolder = folder;
             Properties.Settings.Default.Save();
@@ -187,7 +232,8 @@ namespace Artemisia
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                if (!silent)
+                    MessageBox.Show(ex.Message);
             }
         }
 
@@ -232,7 +278,9 @@ namespace Artemisia
         private void exportToLuaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.DefaultExt = ".lua";
+            sfd.DefaultExt = "lua";
+            sfd.Filter = "Dialog XML files (*.xml)|*.xml";
+            sfd.AddExtension = true;
             sfd.ShowDialog();
             if (!String.IsNullOrEmpty(sfd.FileName))
             {
@@ -281,7 +329,7 @@ namespace Artemisia
 
         private void libraryTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (e.Node.Text != "Dialog")
+            if (e.Node.Text != "Dialogs")
             {
                 string filename = Path.Combine(Properties.Settings.Default.LibraryFolder, e.Node.Text + ".xml");
                 open(filename);
@@ -308,6 +356,44 @@ namespace Artemisia
                 }
             }
             MessageBox.Show("Success!");
+        }
+
+        private void saveDialogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(LoadedFile))
+            {
+                saveAs();
+            }
+            else
+            {
+                saveTo(LoadedFile);
+            }
+        }
+
+        bool treeviewHack = false;
+
+        private void libraryTreeView_BeforeSelect(object sender, TreeViewCancelEventArgs e)
+        {
+            if (e.Node.Text == "Dialogs") e.Cancel = true;
+            if (!treeviewHack)
+            {
+                treeviewHack = true;
+                if (unsaved && MessageBox.Show("The current dialog is unsaved. Are you sure want to load a different one?", "Are you sure?", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No)
+                {
+                    e.Cancel = true;
+
+                }
+                else
+                {
+                    unsaved = false;
+                }
+            }
+            treeviewHack = false;
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            open();
         }
 
 

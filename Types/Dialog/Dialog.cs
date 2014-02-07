@@ -36,6 +36,7 @@ namespace Artemisia.Dialogs
                 dn.Dialog = this;
                 dn.Parent = node;
                 nodesByID[dn.Id] = dn;
+                nextId = Math.Max(nextId, dn.Id);
                 restoreParentage(dn);
             }
         }
