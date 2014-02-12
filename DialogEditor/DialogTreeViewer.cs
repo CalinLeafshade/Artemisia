@@ -31,6 +31,7 @@ namespace Artemisia
         public DialogTreeViewer()
         {
             InitializeComponent();
+            treeView.HideSelection = false;
             treeView.DrawMode = TreeViewDrawMode.OwnerDrawText;
             treeView.ImageIndex = 0;
             treeView.MouseClick += new MouseEventHandler(treeView_MouseClick);

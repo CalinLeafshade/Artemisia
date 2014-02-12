@@ -168,12 +168,19 @@ namespace Artemisia
                 var node = dialogTreeViewer1.SelectedNode as ActionNode;
                 conditionalScriptBox.Text = node.Conditions;
                 actionScriptBox.Text = node.Script;
+                tabControl1.SelectedIndex = 1;
             }
             else if (dialogNode.NodeType == DialogNodeType.Response)
             {
                 var node = dialogTreeViewer1.SelectedNode as ResponseNode;
                 conditionalScriptBox.Text = node.Conditions;
                 txtResponse.Text = node.Text;
+                tabControl1.SelectedIndex = 1;
+            }
+            else if (dialogNode.NodeType == DialogNodeType.Link)
+            {
+                var node = dialogNode as LinkNode;
+                chkLinkToEnd.Checked = node.LinkToEnd;
             }
         }
 
@@ -394,6 +401,13 @@ namespace Artemisia
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
             open();
+        }
+
+        private void chkLinkToEnd_CheckedChanged(object sender, EventArgs e)
+        {
+            LinkNode rn = dialogTreeViewer1.SelectedNode as LinkNode;
+            if (rn != null)
+                rn.LinkToEnd = chkLinkToEnd.Checked;
         }
 
 

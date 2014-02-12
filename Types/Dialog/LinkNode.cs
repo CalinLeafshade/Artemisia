@@ -12,6 +12,14 @@ namespace Artemisia.Dialogs
 
         int linkedID = 0;
 
+        bool linkToEnd = false;
+
+        public bool LinkToEnd
+        {
+            get { return linkToEnd; }
+            set { linkToEnd = value; }
+        }
+
         public int LinkedID
         {
             get { return linkedID; }
