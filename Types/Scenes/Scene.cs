@@ -5,7 +5,6 @@ using System.Text;
 
 namespace Types.Scenes
 {
-
     public enum MaskType { Walkable, Hotspot, Region };
 
     [Serializable]

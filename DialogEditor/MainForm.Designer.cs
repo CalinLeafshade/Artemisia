@@ -47,22 +47,22 @@
             this.libraryTreeView = new System.Windows.Forms.TreeView();
             this.dialogSplitContainer = new System.Windows.Forms.SplitContainer();
             this.lblLoaded = new System.Windows.Forms.Label();
+            this.dialogTreeViewer1 = new Artemisia.DialogTreeViewer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.conditionalScriptBox = new Artemisia.LuaScriptBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.actionScriptBox = new Artemisia.LuaScriptBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.chkLinkToEnd = new System.Windows.Forms.CheckBox();
             this.txtLinkID = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtResponse = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dialogTreeViewer1 = new Artemisia.DialogTreeViewer();
-            this.conditionalScriptBox = new Artemisia.LuaScriptBox();
-            this.actionScriptBox = new Artemisia.LuaScriptBox();
-            this.chkLinkToEnd = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
             this.mainSplitContainer.Panel1.SuspendLayout();
@@ -75,12 +75,12 @@
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.conditionalScriptBox)).BeginInit();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.actionScriptBox)).BeginInit();
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.conditionalScriptBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.actionScriptBox)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -237,6 +237,17 @@
             this.lblLoaded.TabIndex = 1;
             this.lblLoaded.Text = "Currently Loaded: ";
             // 
+            // dialogTreeViewer1
+            // 
+            this.dialogTreeViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dialogTreeViewer1.Location = new System.Drawing.Point(0, 28);
+            this.dialogTreeViewer1.Name = "dialogTreeViewer1";
+            this.dialogTreeViewer1.Size = new System.Drawing.Size(837, 201);
+            this.dialogTreeViewer1.TabIndex = 0;
+            this.dialogTreeViewer1.SelectionChanged += new System.EventHandler(this.dialogTreeViewer1_SelectionChanged);
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage3);
@@ -285,6 +296,28 @@
             this.textBox1.TabIndex = 5;
             this.textBox1.Text = resources.GetString("textBox1.Text");
             // 
+            // conditionalScriptBox
+            // 
+            this.conditionalScriptBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.conditionalScriptBox.AutoScrollMinSize = new System.Drawing.Size(131, 14);
+            this.conditionalScriptBox.BackBrush = null;
+            this.conditionalScriptBox.CharHeight = 14;
+            this.conditionalScriptBox.CharWidth = 8;
+            this.conditionalScriptBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.conditionalScriptBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.conditionalScriptBox.IsReplaceMode = false;
+            this.conditionalScriptBox.Location = new System.Drawing.Point(8, 5);
+            this.conditionalScriptBox.Name = "conditionalScriptBox";
+            this.conditionalScriptBox.Paddings = new System.Windows.Forms.Padding(0);
+            this.conditionalScriptBox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.conditionalScriptBox.Size = new System.Drawing.Size(424, 233);
+            this.conditionalScriptBox.TabIndex = 4;
+            this.conditionalScriptBox.Text = "luaScriptBox1";
+            this.conditionalScriptBox.Zoom = 100;
+            this.conditionalScriptBox.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.conditionalScriptBox_TextChanged);
+            // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.actionScriptBox);
@@ -295,6 +328,26 @@
             this.tabPage4.Tag = "1";
             this.tabPage4.Text = "Actions";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // actionScriptBox
+            // 
+            this.actionScriptBox.AutoScrollMinSize = new System.Drawing.Size(106, 14);
+            this.actionScriptBox.BackBrush = null;
+            this.actionScriptBox.CharHeight = 14;
+            this.actionScriptBox.CharWidth = 8;
+            this.actionScriptBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.actionScriptBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.actionScriptBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.actionScriptBox.IsReplaceMode = false;
+            this.actionScriptBox.Location = new System.Drawing.Point(0, 0);
+            this.actionScriptBox.Name = "actionScriptBox";
+            this.actionScriptBox.Paddings = new System.Windows.Forms.Padding(0);
+            this.actionScriptBox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.actionScriptBox.Size = new System.Drawing.Size(829, 242);
+            this.actionScriptBox.TabIndex = 0;
+            this.actionScriptBox.Text = "luaScriptBox1";
+            this.actionScriptBox.Zoom = 100;
+            this.actionScriptBox.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.actionScriptBox_TextChanged);
             // 
             // tabPage5
             // 
@@ -309,6 +362,17 @@
             this.tabPage5.Tag = "2";
             this.tabPage5.Text = "Link";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // chkLinkToEnd
+            // 
+            this.chkLinkToEnd.AutoSize = true;
+            this.chkLinkToEnd.Location = new System.Drawing.Point(22, 49);
+            this.chkLinkToEnd.Name = "chkLinkToEnd";
+            this.chkLinkToEnd.Size = new System.Drawing.Size(118, 17);
+            this.chkLinkToEnd.TabIndex = 2;
+            this.chkLinkToEnd.Text = "Link to end of node";
+            this.chkLinkToEnd.UseVisualStyleBackColor = true;
+            this.chkLinkToEnd.CheckedChanged += new System.EventHandler(this.chkLinkToEnd_CheckedChanged);
             // 
             // txtLinkID
             // 
@@ -369,70 +433,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Response";
             // 
-            // dialogTreeViewer1
-            // 
-            this.dialogTreeViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.dialogTreeViewer1.Location = new System.Drawing.Point(0, 28);
-            this.dialogTreeViewer1.Name = "dialogTreeViewer1";
-            this.dialogTreeViewer1.Size = new System.Drawing.Size(837, 201);
-            this.dialogTreeViewer1.TabIndex = 0;
-            this.dialogTreeViewer1.SelectionChanged += new System.EventHandler(this.dialogTreeViewer1_SelectionChanged);
-            // 
-            // conditionalScriptBox
-            // 
-            this.conditionalScriptBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.conditionalScriptBox.AutoScrollMinSize = new System.Drawing.Size(131, 14);
-            this.conditionalScriptBox.BackBrush = null;
-            this.conditionalScriptBox.CharHeight = 14;
-            this.conditionalScriptBox.CharWidth = 8;
-            this.conditionalScriptBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.conditionalScriptBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.conditionalScriptBox.IsReplaceMode = false;
-            this.conditionalScriptBox.Location = new System.Drawing.Point(8, 5);
-            this.conditionalScriptBox.Name = "conditionalScriptBox";
-            this.conditionalScriptBox.Paddings = new System.Windows.Forms.Padding(0);
-            this.conditionalScriptBox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.conditionalScriptBox.Size = new System.Drawing.Size(424, 233);
-            this.conditionalScriptBox.TabIndex = 4;
-            this.conditionalScriptBox.Text = "luaScriptBox1";
-            this.conditionalScriptBox.Zoom = 100;
-            this.conditionalScriptBox.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.conditionalScriptBox_TextChanged);
-            // 
-            // actionScriptBox
-            // 
-            this.actionScriptBox.AutoScrollMinSize = new System.Drawing.Size(106, 14);
-            this.actionScriptBox.BackBrush = null;
-            this.actionScriptBox.CharHeight = 14;
-            this.actionScriptBox.CharWidth = 8;
-            this.actionScriptBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.actionScriptBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.actionScriptBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.actionScriptBox.IsReplaceMode = false;
-            this.actionScriptBox.Location = new System.Drawing.Point(0, 0);
-            this.actionScriptBox.Name = "actionScriptBox";
-            this.actionScriptBox.Paddings = new System.Windows.Forms.Padding(0);
-            this.actionScriptBox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.actionScriptBox.Size = new System.Drawing.Size(829, 242);
-            this.actionScriptBox.TabIndex = 0;
-            this.actionScriptBox.Text = "luaScriptBox1";
-            this.actionScriptBox.Zoom = 100;
-            this.actionScriptBox.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.actionScriptBox_TextChanged);
-            // 
-            // chkLinkToEnd
-            // 
-            this.chkLinkToEnd.AutoSize = true;
-            this.chkLinkToEnd.Location = new System.Drawing.Point(22, 49);
-            this.chkLinkToEnd.Name = "chkLinkToEnd";
-            this.chkLinkToEnd.Size = new System.Drawing.Size(118, 17);
-            this.chkLinkToEnd.TabIndex = 2;
-            this.chkLinkToEnd.Text = "Link to end of node";
-            this.chkLinkToEnd.UseVisualStyleBackColor = true;
-            this.chkLinkToEnd.CheckedChanged += new System.EventHandler(this.chkLinkToEnd_CheckedChanged);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -458,14 +458,14 @@
             this.tabPage3.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.conditionalScriptBox)).EndInit();
             this.tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.actionScriptBox)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.conditionalScriptBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.actionScriptBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

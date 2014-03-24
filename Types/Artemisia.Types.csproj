@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AluminumLua">
+      <HintPath>..\References\AluminumLua.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -47,11 +50,17 @@
     <Compile Include="Dialog\LinkNode.cs" />
     <Compile Include="Dialog\ResponseNode.cs" />
     <Compile Include="Dialog\RootNode.cs" />
+    <Compile Include="Interaction\Interactable.cs" />
+    <Compile Include="Interaction\InteractableName.cs" />
+    <Compile Include="Interaction\Interaction.cs" />
+    <Compile Include="Interaction\InteractableCollection.cs" />
+    <Compile Include="Interaction\InteractionSchema.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenes\Scene.cs" />
     <Compile Include="Scenes\SceneMask.cs" />
     <Compile Include="Scenes\SceneObject.cs" />
     <Compile Include="Scenes\StaticSceneObject.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

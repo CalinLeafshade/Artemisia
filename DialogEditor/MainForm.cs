@@ -410,18 +410,5 @@ namespace Artemisia
                 rn.LinkToEnd = chkLinkToEnd.Checked;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

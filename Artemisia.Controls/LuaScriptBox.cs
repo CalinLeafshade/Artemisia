@@ -8,8 +8,9 @@ using System.Text.RegularExpressions;
 
 namespace Artemisia
 {
-    class LuaScriptBox : FastColoredTextBox
+    public class LuaScriptBox : FastColoredTextBox
     {
+
         TextStyle brownStyle = new TextStyle(Brushes.Brown, null, FontStyle.Regular);
         TextStyle greenStyle = new TextStyle(Brushes.DarkSeaGreen, null, FontStyle.Regular);
         TextStyle blueStyle = new TextStyle(Brushes.DarkBlue, null, FontStyle.Regular);

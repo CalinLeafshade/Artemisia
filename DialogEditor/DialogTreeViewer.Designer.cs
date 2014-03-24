@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DialogTreeViewer));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.treeView = new Artemisia.TreeViewWithInterpolation();
+            this.treeView = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
             // imageList1
@@ -68,7 +68,7 @@
 
         #endregion
 
-        private TreeViewWithInterpolation treeView;
+        private System.Windows.Forms.TreeView treeView;
         private System.Windows.Forms.ImageList imageList1;
     }
 }
